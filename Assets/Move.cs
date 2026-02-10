@@ -5,14 +5,17 @@ public class Move : MonoBehaviour
 {
     public CharacterController controller;
     public PlayerInput input;
-    public Vector3 moveDir = Vector3.zero;
+    public Vector2 moveDir = Vector2.zero;
     public float movespeed;
     public Animator animator;
 
 
     private void Update()
     {
-        controller.Move(moveDir * movespeed * Time.deltaTime);
+        var sideMovement = transform.right * moveDir.x;
+        var forwardMovement = transform.forward *  moveDir.y;
+        var movement = sideMovement + forwardMovement;
+        controller.Move( movement * (movespeed * Time.deltaTime));
     }
 
     public void MovePlayer(InputAction.CallbackContext ctx)
@@ -21,7 +24,7 @@ public class Move : MonoBehaviour
         animator.SetBool("IsMoving", (move.x != 0 || move.y != 0));
 
 
-        moveDir = new Vector3(move.x, 0, move.y);
+        moveDir = new Vector2(move.x, move.y);
         animator.SetFloat("hMove", move.x);
         animator.SetFloat("vMove", move.y);
     }
