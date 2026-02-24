@@ -3,6 +3,7 @@ using UnityEngine;
 public class RagdollOnClick : MonoBehaviour
 {
     Animator _animator;
+    public bool ragdolled = false;
     private void Start()
     {
         _animator = GetComponent<Animator>();
@@ -11,6 +12,7 @@ public class RagdollOnClick : MonoBehaviour
     public void Ragdoll()
     {
         _animator.enabled = false;
+        ragdolled = true;
     }
 
 }
