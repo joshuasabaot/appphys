@@ -1,9 +1,10 @@
-using NUnit.Framework;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TargetSpawner : MonoBehaviour
 {
+    private bool _IsGameOver;
+    [SerializeField] private GameObject GameOverUI;
     public RagdollOnClick prefab;
     public float spawnwidthlength = 10;
     List<RagdollOnClick> spawnedTargets = new List<RagdollOnClick>();
@@ -37,10 +38,11 @@ public class TargetSpawner : MonoBehaviour
             }
         }
 
-        if (counter == spawnedTargets.Count)
+        if (counter == spawnedTargets.Count &&  !_IsGameOver)
         {
+            _IsGameOver =  true;
             Debug.Log("All targets down, respawning...");
-            
+            GameOverUI.SetActive(true);
         }
     }
 }
