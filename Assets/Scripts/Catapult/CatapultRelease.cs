@@ -6,22 +6,22 @@ public class CatapultRelease : MonoBehaviour
     [SerializeField] float ReleaseAngle = 225f;
     [SerializeField] float currentAngle = 0f;
 
-    private SpringJoint springJoint;
-    private HingeJoint hingeJoint;
+    private SpringJoint _springJoint;
+    private HingeJoint _hingeJoint;
 
     private void Start()
     {
-        springJoint = Sphere.GetComponent<SpringJoint>();
-        hingeJoint = GetComponent<HingeJoint>();
+        _springJoint = Sphere.GetComponent<SpringJoint>();
+        _hingeJoint = GetComponent<HingeJoint>();
     }
 
     private void Update()
     {
-        currentAngle = hingeJoint.angle;
+        currentAngle = _hingeJoint.angle;
 
-        if (springJoint != null && currentAngle >= ReleaseAngle)
+        if (_springJoint != null && currentAngle >= ReleaseAngle)
         {
-            Destroy(springJoint);
+            Destroy(_springJoint);
         }
     }
 }
