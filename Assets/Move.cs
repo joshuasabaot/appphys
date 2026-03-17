@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 public class Move : MonoBehaviour
 {
     public CharacterController controller;
-    public PlayerInput input;
     public Vector2 moveDir = Vector2.zero;
     public float movespeed;
     public float gravityValue = -9.81f;
@@ -23,7 +22,7 @@ public class Move : MonoBehaviour
 
         if (controller.isGrounded && gravity.y < 0)
         {
-            gravity.y = 0f;
+            gravity.y = -.03f;
         } else
         {
             gravity.y += gravityValue * Time.deltaTime;
